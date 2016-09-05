@@ -26,7 +26,9 @@ var Container = React.createClass({
     return (
       <div>
         <SearchBox onSearch={this.handleSearch} />
-        <Results results={this.state.results} />
+        {this.state.results &&
+          <Results results={this.state.results} />
+        }
       </div>
     );
   }
@@ -45,36 +47,30 @@ var SearchBox = React.createClass({
       <DebounceInput
           minLength={2}
           debounceTimeout={300}
-          onChange={this.handleChange} />
+          onChange={this.handleChange}
+          placeholder="Search the news" />
     );
   }
 });
 
 var Results = React.createClass({
   render: function() {
-    if (this.props.results) {
-      var articles = [];
-      for (var i = 0; i < this.props.results.length; i++) {
-        articles.push(this.props.results[i]);
-      };
-      return (
-        <section id="Results">
-          {articles.map(function(result) {
-             return <Article key={result.id} data={result}/>;
-          })}
-        </section>
-      );
-    } else {
-      return (
-        <p>Please search above</p>
-      );
-    }
+    var articles = [];
+    for (var i = 0; i < this.props.results.length; i++) {
+      articles.push(this.props.results[i]);
+    };
+    return (
+      <section id="Results">
+        {articles.map(function(result) {
+           return <Article key={result.id} data={result}/>;
+        })}
+      </section>
+    );
   }
 });
 
 var Article = React.createClass({
   render: function() {
-    console.log(this.props.data);
     return (
       <article>
         <span>{this.props.data.sectionName}</span>
