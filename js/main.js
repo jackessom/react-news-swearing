@@ -1,30 +1,32 @@
 var Container = React.createClass({
   getInitialState: function() {
-    return {term: ''};
+    return {results: null};
   },
   handleSearch: function(term) {
-    console.log('test', {term});
-
-    reqwest({
-      url: 'http://content.guardianapis.com/search?api-key=772e8012-6a3d-43fd-9851-516bcfe7afa8',
-      type: 'json',
-      method: 'get',
-      contentType: 'application/json',
-      crossOrigin: false,
-      withCredentials: false,
-      error: function (err) { },
-      success: function (resp) {
-        console.log(resp);
-      }
-    });
-
+    var self = this;
+    if (term.length > 2) {
+      reqwest({
+        url: 'https://content.guardianapis.com/search?api-key=772e8012-6a3d-43fd-9851-516bcfe7afa8&q='+term,
+        type: 'json',
+        method: 'get',
+        contentType: 'application/json',
+        crossOrigin: true,
+        withCredentials: false,
+        error: function (err) { },
+        success: this.setResults
+      });
+    } else {
+      this.setState({results: null});
+    }
+  },
+  setResults: function(resp) {
+    this.setState({results: resp.response.results});
   },
   render: function() {
     return (
       <div>
-        <SearchBox onSearch={this.handleSearch}></SearchBox>
-        <Results></Results>
-        <SelectedArticle></SelectedArticle>
+        <SearchBox onSearch={this.handleSearch} />
+        <Results results={this.state.results} />
       </div>
     );
   }
@@ -40,21 +42,45 @@ var SearchBox = React.createClass({
   },
   render: function() {
     return (
-      <input
-        type="text"
-        value={this.state.searchTerm}
-        onChange={this.handleChange}
-      ></input>
+      <DebounceInput
+          minLength={2}
+          debounceTimeout={300}
+          onChange={this.handleChange} />
     );
   }
 });
 
 var Results = React.createClass({
   render: function() {
+    if (this.props.results) {
+      var articles = [];
+      for (var i = 0; i < this.props.results.length; i++) {
+        articles.push(this.props.results[i]);
+      };
+      return (
+        <section id="Results">
+          {articles.map(function(result) {
+             return <Article key={result.id} data={result}/>;
+          })}
+        </section>
+      );
+    } else {
+      return (
+        <p>Please search above</p>
+      );
+    }
+  }
+});
+
+var Article = React.createClass({
+  render: function() {
+    console.log(this.props.data);
     return (
-      <section id="Results">
-        <article>Search result 1</article>
-      </section>
+      <article>
+        <span>{this.props.data.sectionName}</span>
+        <h2>{this.props.data.webTitle}</h2>
+        <p><a href={this.props.data.webUrl} target="_blank">Go to article</a></p>
+      </article>
     );
   }
 });
@@ -69,9 +95,4 @@ var SelectedArticle = React.createClass({
   }
 });
 
-
 ReactDOM.render(<Container />, document.getElementById('container'));
-
-
-
-
