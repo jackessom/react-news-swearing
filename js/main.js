@@ -3,10 +3,9 @@ var Container = React.createClass({
     return {results: null};
   },
   handleSearch: function(term) {
-    var self = this;
     if (term.length > 2) {
       reqwest({
-        url: 'https://content.guardianapis.com/search?api-key=772e8012-6a3d-43fd-9851-516bcfe7afa8&q='+term,
+        url: 'https://content.guardianapis.com/search?api-key=772e8012-6a3d-43fd-9851-516bcfe7afa8&show-fields=headline,thumbnail&order-by=relevance&q='+term,
         type: 'json',
         method: 'get',
         contentType: 'application/json',
@@ -59,10 +58,15 @@ var Results = React.createClass({
     for (var i = 0; i < this.props.results.length; i++) {
       articles.push(this.props.results[i]);
     };
+    console.log(articles);
     return (
       <section id="Results">
         {articles.map(function(result) {
-           return <Article key={result.id} data={result}/>;
+           return <Article
+                    key={result.id}
+                    title={result.fields.headline}
+                    thumbnail={result.fields.thumbnail}
+                    url={result.webUrl}/>;
         })}
       </section>
     );
@@ -73,9 +77,9 @@ var Article = React.createClass({
   render: function() {
     return (
       <article>
-        <span>{this.props.data.sectionName}</span>
-        <h2>{this.props.data.webTitle}</h2>
-        <p><a href={this.props.data.webUrl} target="_blank">Go to article</a></p>
+        <img alt={this.props.title} src={this.props.thumbnail} />
+        <h2>{this.props.title}</h2>
+        <p><a href={this.props.url} target="_blank">Go to article</a></p>
       </article>
     );
   }

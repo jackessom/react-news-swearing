@@ -25,4 +25,11 @@ article {
 	margin-bottom: 20px;
 	background: #ccc;
 	padding: 20px;
+
+	width: 33.333%;
+	float: left;
+}
+
+img {
+	max-width: 100%;
 }
