@@ -1,0 +1,33 @@
+{
+  "name": "react-news-swearing",
+  "version": "1.0.0",
+  "description": "Small project with react to search the news and show whos swearing about it",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --progress --colors --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrjackess/react-news-swearing.git"
+  },
+  "author": "Jack Essom",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrjackess/react-news-swearing/issues"
+  },
+  "homepage": "https://github.com/mrjackess/react-news-swearing",
+  "dependencies": {
+    "react": "^15.3.1",
+    "react-debounce-input": "^2.4.0",
+    "react-dom": "^15.3.1",
+    "reqwest": "^2.0.5"
+  },
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "webpack": "^1.13.2"
+  }
+}
