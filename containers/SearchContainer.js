@@ -1,7 +1,7 @@
 var React = require('react');
 var Reqwest = require('reqwest');
 var SearchBox = require('../components/SearchBox');
-var Results = require('../containers/Results');
+var Article = require('../components/Article');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -27,11 +27,24 @@ module.exports = React.createClass({
     this.setState({results: resp.response.results});
   },
   render: function() {
+    var articles = [];
+    if (this.state.results) {
+      for (var i = 0; i < this.state.results.length; i++) {
+        var result = this.state.results[i];
+        articles.push(
+          <Article
+             key={result.id}
+             title={result.fields.headline}
+             thumbnail={result.fields.thumbnail}
+             url={result.webUrl}/>
+        );
+      };
+    }
     return (
       <div>
         <SearchBox onSearch={this.handleSearch} />
         {this.state.results &&
-          <Results results={this.state.results} />
+          <section id="results">{articles}</section>
         }
       </div>
     );

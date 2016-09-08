@@ -21467,7 +21467,7 @@
 	var React = __webpack_require__(1);
 	var Reqwest = __webpack_require__(173);
 	var SearchBox = __webpack_require__(175);
-	var Results = __webpack_require__(181);
+	var Article = __webpack_require__(182);
 	
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -21495,11 +21495,26 @@
 	    this.setState({ results: resp.response.results });
 	  },
 	  render: function render() {
+	    var articles = [];
+	    if (this.state.results) {
+	      for (var i = 0; i < this.state.results.length; i++) {
+	        var result = this.state.results[i];
+	        articles.push(React.createElement(Article, {
+	          key: result.id,
+	          title: result.fields.headline,
+	          thumbnail: result.fields.thumbnail,
+	          url: result.webUrl }));
+	      };
+	    }
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(SearchBox, { onSearch: this.handleSearch }),
-	      this.state.results && React.createElement(Results, { results: this.state.results })
+	      this.state.results && React.createElement(
+	        'section',
+	        { id: 'results' },
+	        articles
+	      )
 	    );
 	  }
 	});
@@ -22838,38 +22853,7 @@
 	module.exports = shallowCompare;
 
 /***/ },
-/* 181 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	var React = __webpack_require__(1);
-	var Article = __webpack_require__(182);
-	
-	module.exports = React.createClass({
-	  displayName: 'exports',
-	
-	  render: function render() {
-	    var articles = [];
-	    for (var i = 0; i < this.props.results.length; i++) {
-	      articles.push(this.props.results[i]);
-	    };
-	
-	    return React.createElement(
-	      'section',
-	      { id: 'Results' },
-	      articles.map(function (result) {
-	        return React.createElement(Article, {
-	          key: result.id,
-	          title: result.fields.headline,
-	          thumbnail: result.fields.thumbnail,
-	          url: result.webUrl });
-	      })
-	    );
-	  }
-	});
-
-/***/ },
+/* 181 */,
 /* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
