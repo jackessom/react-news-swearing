@@ -29,4 +29,6 @@ Thumbs.db
 node_modules
 node_modules/*
 
+# webpack
 *.map
+*.log
