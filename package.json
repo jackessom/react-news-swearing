@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/mrjackess/react-news-swearing",
   "dependencies": {
+    "normalize-scss": "^5.0.3",
     "react": "^15.3.1",
     "react-debounce-input": "^2.4.0",
     "react-dom": "^15.3.1",

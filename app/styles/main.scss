@@ -1,3 +1,4 @@
+@import "~normalize-scss/sass/normalize/import-now";
 @import "~susy/sass/susy";
 
 html, body {
@@ -6,7 +7,8 @@ html, body {
 }
 
 #container {
-  @include container(80em);
+  @include container(1000px);
+	margin-top: 2em;
 }
 
 input {
@@ -15,21 +17,4 @@ input {
 	display: block;
 	width: 500px;
 	margin: 0 auto 50px;
-}
-
-h2 {
-	margin-top: 0;
-}
-
-article {
-	margin-bottom: 20px;
-	background: #ccc;
-	padding: 20px;
-
-	width: 33.333%;
-	float: left;
-}
-
-img {
-	max-width: 100%;
 }
