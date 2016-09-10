@@ -50,7 +50,18 @@
 	var ReactDOM = __webpack_require__(34);
 	var SearchContainer = __webpack_require__(172);
 	
+	__webpack_require__(182);
+	
 	ReactDOM.render(React.createElement(SearchContainer, null), document.getElementById('container'));
+	;
+
+	(function () {
+	  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	    return;
+	  }
+	})();
+
+	;
 
 /***/ },
 /* 1 */
@@ -21483,6 +21494,15 @@
 	    );
 	  }
 	});
+	;
+
+	(function () {
+	  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	    return;
+	  }
+	})();
+
+	;
 
 /***/ },
 /* 173 */
@@ -22153,6 +22173,15 @@
 	      placeholder: 'Search the news' });
 	  }
 	});
+	;
+
+	(function () {
+	  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	    return;
+	  }
+	})();
+
+	;
 
 /***/ },
 /* 176 */
@@ -22843,6 +22872,21 @@
 	    );
 	  }
 	});
+	;
+
+	(function () {
+	  if (typeof __REACT_HOT_LOADER__ === 'undefined') {
+	    return;
+	  }
+	})();
+
+	;
+
+/***/ },
+/* 182 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

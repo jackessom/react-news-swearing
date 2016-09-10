@@ -1,0 +1,30 @@
+html, body {
+  margin: 0;
+  padding: 0; }
+
+#container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px; }
+
+input {
+  font-size: 2em;
+  padding: 10px;
+  display: block;
+  width: 500px;
+  margin: 0 auto 50px; }
+
+h2 {
+  margin-top: 0; }
+
+article {
+  margin-bottom: 20px;
+  background: #ccc;
+  padding: 20px;
+  width: 33.333%;
+  float: left; }
+
+img {
+  max-width: 100%; }
+
+/*# sourceMappingURL=main.css.map*/
