@@ -1,12 +1,12 @@
+@import "~susy/sass/susy";
+
 html, body {
 	margin: 0;
 	padding: 0;
 }
 
 #container {
-	max-width: 1000px;
-	margin: 0 auto;
-	padding: 30px;
+  @include container(80em);
 }
 
 input {
