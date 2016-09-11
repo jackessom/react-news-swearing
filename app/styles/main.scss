@@ -1,14 +1,40 @@
 @import "~normalize-scss/sass/normalize/import-now";
 @import "~susy/sass/susy";
 
-html, body {
-	margin: 0;
-	padding: 0;
+#app {
+	margin-top: 2em;
 }
 
-#container {
-  @include container(1000px);
-	margin-top: 2em;
+section {
+	padding: 0 2em;
+	> div  {
+		@include container(1000px);
+	}
+}
+
+a.article {
+	@include span(4 of 12);
+	&:last-child {
+		margin-right: 0;
+	}
+
+	article {
+		padding: 2em;
+		text-align: center;
+	}
+
+	color: inherit;
+	text-decoration: none;
+
+	&:hover, &.selected {
+		article {
+			background: #ccc;
+		}
+	}
+}
+
+img {
+	max-width: 100%;
 }
 
 input {

@@ -4,4 +4,4 @@ var SearchContainer = require('./containers/SearchContainer');
 
 require('./styles/main.scss');
 
-ReactDOM.render(<SearchContainer />, document.getElementById('container'));
+ReactDOM.render(<SearchContainer />, document.getElementById('app'));

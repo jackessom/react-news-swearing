@@ -1,7 +1,7 @@
 var React = require('react');
 var Reqwest = require('reqwest');
 var SearchBox = require('../components/SearchBox');
-var Article = require('../components/Article');
+var Results = require('./Results');
 
 module.exports = React.createClass({
   getInitialState: function() {
@@ -9,8 +9,10 @@ module.exports = React.createClass({
   },
   handleSearch: function(term) {
     if (term.length > 2) {
+      var apiKey = '772e8012-6a3d-43fd-9851-516bcfe7afa8';
+
       Reqwest({
-        url: 'https://content.guardianapis.com/search?api-key=772e8012-6a3d-43fd-9851-516bcfe7afa8&show-fields=headline,thumbnail&order-by=relevance&q='+term,
+        url: 'https://content.guardianapis.com/search?api-key='+apiKey+'&show-fields=headline,thumbnail&page-size=6&q='+term,
         type: 'json',
         method: 'get',
         contentType: 'application/json',
@@ -27,24 +29,15 @@ module.exports = React.createClass({
     this.setState({results: resp.response.results});
   },
   render: function() {
-    var articles = [];
-    if (this.state.results) {
-      for (var i = 0; i < this.state.results.length; i++) {
-        var result = this.state.results[i];
-        articles.push(
-          <Article
-             key={result.id}
-             title={result.fields.headline}
-             thumbnail={result.fields.thumbnail}
-             url={result.webUrl}/>
-        );
-      };
-    }
     return (
       <div>
-        <SearchBox onSearch={this.handleSearch} />
+        <section>
+          <div>
+            <SearchBox onSearch={this.handleSearch} />
+          </div>
+        </section>
         {this.state.results &&
-          <section id="results">{articles}</section>
+          <Results results={this.state.results} />
         }
       </div>
     );
