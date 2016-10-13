@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var SearchContainer = require('./containers/SearchContainer');
+var Container = require('./containers/Container');
 
 require('./styles/main.scss');
 
-ReactDOM.render(<SearchContainer />, document.getElementById('app'));
+ReactDOM.render(<Container />, document.getElementById('app'));
