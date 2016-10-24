@@ -14,7 +14,7 @@ module.exports = React.createClass({
     return {mood: null, tweets: null};
   },
   componentDidMount: function() {
-    this.searchTwitter(this.props.title.replace(/ /g, " "));
+    this.searchTwitter(this.props.title.replace(/ /g, "&OR%"));
   },
   componentWillReceiveProps: function(nextProps) {
     this.searchTwitter(nextProps.title.replace(/ /g, " "));
